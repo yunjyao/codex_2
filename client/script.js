@@ -79,7 +79,7 @@ const uniqueId = generateUniqueID()
 
   // fetch data from the server
 
-  const response = await fetch('http://localhost:7001', {
+  const response = await fetch('https://newcodex.onrender.com', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
