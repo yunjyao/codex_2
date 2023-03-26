@@ -13,7 +13,7 @@ function loader(element) {
   loadInterval = setInterval(() => {
     element.textContent += '.';
 
-    if(element.textContent === '....') {
+    if (element.textContent === '....') {
       element.textContent = '';
     }
   }, 300)
@@ -23,12 +23,12 @@ function typeText(element, text) {
   let index = 0;
 
   let interval = setInterval(() => {
-    if(index < text.length) {
+    if (index < text.length) {
       element.innerHTML += text.charAt(index);
       index++;
-  } else {
-    clearInterval(interval);
-  }
+    } else {
+      clearInterval(interval);
+    }
   }, 20)
 }
 
@@ -42,7 +42,7 @@ function generateUniqueID() {
 
 function chatStripe(isAi, value, uniqueId) {
   return (
-      `
+    `
       <div class="wrapper ${isAi && 'ai'}">
           <div class="chat">
               <div class="profile">
@@ -65,10 +65,10 @@ const handleSubmit = async (e) => {
 
   // user's chatstripe
   chatContainer.innerHTML += chatStripe(false, data.get('prompt'));
-form.reset();
+  form.reset();
 
-// bot's chat stripe
-const uniqueId = generateUniqueID()
+  // bot's chat stripe
+  const uniqueId = generateUniqueID()
   chatContainer.innerHTML += chatStripe(true, " ", uniqueId);
 
   chatContainer.scollTop = chatContainer.scrollHeight;
@@ -78,8 +78,9 @@ const uniqueId = generateUniqueID()
   loader(messageDiv);
 
   // fetch data from the server
-
-  const response = await fetch('https://newcodex.onrender.com', {
+  // const url = "https://newcodex.onrender.com";
+  const url = "http://localhost:7001"
+  const response = await fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -92,7 +93,7 @@ const uniqueId = generateUniqueID()
   clearInterval(loadInterval);
   messageDiv.innerHTML = '';
 
-  if(response.ok) {
+  if (response.ok) {
     const data = await response.json();
     const parsedData = data.bot.trim();
 
@@ -109,7 +110,7 @@ const uniqueId = generateUniqueID()
 
 form.addEventListener('submit', handleSubmit)
 form.addEventListener('keyup', (e) => {
-    if (e.keyCode === 13) {
-        handleSubmit(e)
-    }
+  if (e.keyCode === 13) {
+    handleSubmit(e)
+  }
 })
