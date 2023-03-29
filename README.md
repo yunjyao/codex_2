@@ -1,0 +1,1 @@
+Add `.env` file with `OPENAI_API_KEY` field in server folder.

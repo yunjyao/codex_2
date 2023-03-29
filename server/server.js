@@ -14,6 +14,10 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 const app = express()
+app.use(function setCommonHeaders(req, res, next) {
+  res.set("Access-Control-Allow-Private-Network", "true");
+  next();
+});
 app.use(cors())
 app.use(express.json())
 
