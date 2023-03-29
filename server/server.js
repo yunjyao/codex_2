@@ -17,14 +17,14 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-app.get('/', async (req, res) => {
+app.get('/api', async (req, res) => {
   res.status(200).send({
     message: 'Hello from CodeX!'
   })
 })
 const conversations = [];
 
-app.post('/', async (req, res) => {
+app.post('/api', async (req, res) => {
   try {
     console.log('posting to server')
     const prompt = req.body.prompt;
