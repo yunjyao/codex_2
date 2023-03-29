@@ -79,7 +79,7 @@ const handleSubmit = async (e) => {
 
   // fetch data from the server
   // const url = "https://newcodex.onrender.com";
-  const url = "http://localhost:7001"
+  const url = "http://localhost:7001/api"
   const response = await fetch(url, {
     method: 'POST',
     headers: {
